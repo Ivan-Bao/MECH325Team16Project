@@ -15,7 +15,7 @@ and 3-variables are left wheel
 %}
 
 function [T2, T3, isFpre] = calcTorque(Rt, V, theta)
-%List of constants:==========
+%List of constants:==========   
     width = 2.0; %Change later, width of the vehicle
     rWheel = 0.5; %Radius of wheels
     mu = 0.01; %Friction coefficient between friction and steel plates
