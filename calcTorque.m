@@ -18,9 +18,9 @@ function [T2, T3, isFpre] = calcTorque(Rt, V, theta)
 %List of constants:==========   
     width = 2.0; %Change later, width of the vehicle
     rWheel = 0.5; %Radius of wheels
-    mu = 0.01; %Friction coefficient between friction and steel plates
-    Fpre = 1; %Preload force
-    ro = 0.05; %Outer radius of friction disk
+    mu = 0.3; %Friction coefficient between friction and steel plates
+    Fpre = 100; %Preload force
+    ro = 0.1; %Outer radius of friction disk
     ri = 0.01; %Inner radius of friction disk
     r5 = 0.06; %Radius of the case
 %==========================
@@ -62,7 +62,7 @@ end
 
 function T = getEngineTorque(w)
     
-    T = 1/w;
+    T = 150 * 745.7 / w;
    
 end
 
