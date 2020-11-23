@@ -21,8 +21,9 @@ function [T2, T3, isFpre] = calcTorque(Rt, V, theta)
     mu = 0.3; %Friction coefficient between friction and steel plates
     Fpre = 100; %Preload force
     ro = 0.1; %Outer radius of friction disk
-    ri = 0.01; %Inner radius of friction disk
+    ri = 0.07; %Inner radius of friction disk
     r5 = 0.06; %Radius of the case
+    disk_contacts = 4; % number of contacting surfaces in assembly
 %==========================
     
     Rin = Rt - width/2;
@@ -44,7 +45,7 @@ function [T2, T3, isFpre] = calcTorque(Rt, V, theta)
     T5_3 = M2rref(2, 3);
     
     isFpre = true;
-    muPrime = 2 * pi * mu * (ro^3 - ri^3)/3;
+    muPrime = 2 * pi * mu * (ro^3 - ri^3)/3 * disk_contacts;
     Fn = Fpre;
     temp = T4_5*tan(theta)/(2*r5);
     if temp > Fn
@@ -62,7 +63,7 @@ end
 
 function T = getEngineTorque(w)
     
-    T = 150 * 745.7 / w;
+    T = 50 * 745.7 / w;
    
 end
 
