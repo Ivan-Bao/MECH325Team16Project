@@ -45,7 +45,8 @@ function [T2, T3, isPreload] = calcTorque(Rt, V, theta)
     T5_3 = M2rref(2, 3);
     
     isPreload = false;
-    muPrime = 2 * pi * mu * (ro^3 - ri^3)/3 * disk_contacts;
+ 
+    muPrime = disk_contacts * 2 * mu * (ro^3 - ri^3)/(3 * (ro^2 - ri^2));
   
     
     Fn = T4_5*tan(theta)/(2*r5);  
