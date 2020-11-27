@@ -45,7 +45,7 @@ function [T2, T3, isPreload] = calcTorque(Rt, V, theta)
     T5_3 = M2rref(2, 3);
     
     isPreload = false;
- 
+
     % Uniform pressure - e.g. new part
     % muPrime = disk_contacts * 2 * mu * (ro^3 - ri^3)/(3 * (ro^2 - ri^2));
     
@@ -58,7 +58,7 @@ function [T2, T3, isPreload] = calcTorque(Rt, V, theta)
     
     if Tpre > T4_2 
         isPreload = true;
-        T4_2 = TPre;
+        T4_2 = Tpre;
     end
     T4_3 = -T4_2;
     
@@ -68,9 +68,7 @@ function [T2, T3, isPreload] = calcTorque(Rt, V, theta)
 end
 
 function T = getEngineTorque(w)
-    
-    T = 50 * 745.7 / w;
-   
+    T = 58.16 * 32 / 14 * 0.99;  % 99% efficient
 end
 
 
