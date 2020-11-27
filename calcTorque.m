@@ -18,7 +18,7 @@ function [T2, T3, isPreload] = calcTorque(Rt, V, theta)
 %List of constants:==========   
     width = 2.0; %Change later, width of the vehicle
     rWheel = 0.5; %Radius of wheels
-    mu = 0.3; %Friction coefficient between friction and steel plates
+    mu = 0.09; %Friction coefficient between friction and steel plates
     Tpre = 10; % Preload (after running in) [Nm]
     ro = 0.1; %Outer radius of friction disk
     ri = 0.07; %Inner radius of friction disk
@@ -45,8 +45,12 @@ function [T2, T3, isPreload] = calcTorque(Rt, V, theta)
     T5_3 = M2rref(2, 3);
     
     isPreload = false;
- 
-    muPrime = disk_contacts * 2 * mu * (ro^3 - ri^3)/(3 * (ro^2 - ri^2));
+
+    % Uniform pressure - e.g. new part
+    % muPrime = disk_contacts * 2 * mu * (ro^3 - ri^3)/(3 * (ro^2 - ri^2));
+    
+    % Uniform wear, i.e. PV is constant - if diff has been used
+    muPrime = disk_contacts * mu * (ro + ri) / 2;
   
     
     Fn = T4_5*tan(theta)/(2*r5);  
@@ -54,7 +58,7 @@ function [T2, T3, isPreload] = calcTorque(Rt, V, theta)
     
     if Tpre > T4_2 
         isPreload = true;
-        T4_2 = TPre;
+        T4_2 = Tpre;
     end
     T4_3 = -T4_2;
     
@@ -64,9 +68,7 @@ function [T2, T3, isPreload] = calcTorque(Rt, V, theta)
 end
 
 function T = getEngineTorque(w)
-    
-    T = 50 * 745.7 / w;
-   
+    T = 58.16 * 32 / 14 * 0.99;  % 99% efficient
 end
 
 
