@@ -16,13 +16,14 @@ and 3-variables are left wheel
 
 function [T2, T3, isPreload] = calcTorque(Rt, V, theta)
 %List of constants:==========   
-    width = 2.0; %Change later, width of the vehicle
-    rWheel = 0.5; %Radius of wheels
+% Star = unknown / guess
+    width = 2.0; %Change later, width of the vehicle *
+    rWheel = 0.2032; % Radius of wheels 
     mu = 0.09; %Friction coefficient between friction and steel plates
-    Tpre = 10; % Preload (after running in) [Nm]
-    ro = 0.1; %Outer radius of friction disk
-    ri = 0.07; %Inner radius of friction disk
-    r5 = 0.06; %Radius of the case
+    Tpre = 10; % Preload (after running in) [Nm] 
+    ro = 0.055; %Outer radius of friction disk * 
+    ri = 0.04; %Inner radius of friction disk *
+    r5 = 0.06; %Radius of the case 
     disk_contacts = 4; % number of contacting surfaces in assembly
 %==========================
     
